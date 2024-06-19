@@ -1,0 +1,65 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "timer" [fullScreen] = "true"><p style="color: white" > En cours de traitement... </p></ngx-spinner>
+<h1>Verication des Informations</h1>
+
+<div class="container-fluid">
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+   <div class="col">
+      <div class="card h-100">
+        <table *ngIf="demande.validite" class="table table-striped">
+
+            <tbody>
+                <tr>
+                    <th>Prenom:</th>
+                    <td>{{ demande.demandeurDTO?.prenom }}</td>
+                </tr>
+                <tr>
+                    <th>Nom:</th>
+                    <td>{{ demande.demandeurDTO?.nom }}</td>
+                </tr>
+                <tr>
+                    <th>date naissance:</th>
+                    <td>{{ demande.demandeurDTO?.datedenaissance }}</td>
+                </tr>
+                <tr>
+                    <th>lieu de naissance:</th>
+                    <td>{{ demande.demandeurDTO?.lieudenaissance }}</td>
+                </tr>
+                <tr>
+                    <th>Numero d'Identite National:</th>
+                    <td>{{ demande.demandeurDTO?.nin }}</td>
+                </tr>
+                <tr>
+                  <th>Email:</th>
+                  <td>{{ demande.demandeurDTO?.email }}</td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="card-footer">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+            <img src="/assets/img/monument.jpeg" class="card-img-top" alt="...">
+            <!-- <img src={{demande.demandeurDTO?.scannernin}} class="card-img-top" alt="..."> -->
+            <img [src]="demande.demandeurDTO?.scannernin" class="card-img-top" alt="Scanner NIN">
+        </div>
+        <div class="card-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- button -->
+
+<div class="bouton">
+<button type="button" class="btn btn-outline-primary" (click)="RetourToListDemandes()">Annulée</button>
+<button type="button" class="btn btn-outline-success" (click)="approuvedAttestaion() ; openSpinner()">Approuvée</button>
+<button type="button" class="btn btn-outline-danger" (click)="rejectedAttestation() ; openSpinner()">Rejectée</button>
+</div>
+<p *ngIf="!demande.validite">
+Attestation expiree
+</p>
+</div>

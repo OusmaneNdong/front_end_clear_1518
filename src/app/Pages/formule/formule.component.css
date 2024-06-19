@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #EDEEE9; */
+  padding: 30px;
+}
+.container{
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  /* background: #ffffff; */
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  perspective: 2700px;
+  margin-top: 75px;
+}
+.container .cover{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  /* background: rgb(226, 226, 230); */
+  /* background-color: #D8DBCE; */
+  
+}
+.container #flip:checked ~ .cover{
+  transform: rotateY(-180deg);
+}
+ .container .cover .front,
+ .container .cover .back{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.cover .back{
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  /* background-color: #D8DBCE; */
+  
+}
+.container .cover::before,
+.container .cover::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 95%;
+  opacity: 0.5;
+  z-index: 12;
+  margin-top: 74px;
+  margin-bottom: 20px;
+}
+.container .cover::after{
+  opacity: 0.3;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  
+}
+.container .cover::before{
+  opacity: 0.1;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  
+  
+}
+.container .cover img{
+  position: absolute;
+  height: 472px;
+  width: 423px;
+  object-fit: cover;
+  z-index: 10;
+  margin-left: 2px;
+  margin-top: 10px;
+}
+.container .cover .text{
+  position: absolute;
+  z-index: 130;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+.cover .font{
+  background-color: #f2f2f2;
+}
+.cover .text .text-1,
+.cover .text .text-2{
+  font-size: 20px;
+  font-weight: 600;
+  color: #b8b2b2;
+  text-align: center;
+    
+
+}
+.cover .text .text-2{
+  font-size: 15px;
+  font-weight: 500;
+}
+.container .forms{
+  height: 90%;
+}
+.forms .signup-form{
+  margin-left: 150px;
+  }
+.container .form-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.form-content .login-form,
+.form-content .signup-form{
+  width: calc(100% / 2 - 25px);
+}
+.forms .form-content .title{
+  position: relative;
+  font-size: 32px;
+  font-weight: 500;
+  font-family: ar;
+  color: #333;
+}
+.forms .form-content .title:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 25px;
+  background: #0f0f0f;
+}
+.forms .signup-form  .title:before{
+  width: 20px;
+}
+.container{
+  /* background-color: #EDEEE9;  */
+}
+.login-form{
+  /* background-color: #EDEEE9; */
+}
+.signup-form{
+  /* background-color: #EDEEE9; */
+}
+
+
+.forms .form-content .input-boxes{
+  margin-top: 30px;
+}
+.forms .form-content .input-box{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+.form-content .input-box input:hover{
+  background-color: rgb(248, 248, 249);
+}
+.form-content .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 30px;
+  font-size: 10px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(6, 5, 5, 0.2);
+  transition: all 0.3s ease;
+  background: transparent;
+  /* background-color: #EDEEE9; */
+}
+.form-content .input-box input:focus,
+.form-content .input-box input:valid{
+  border-color: #cacace;
+}
+.form-content .input-box i{
+  position: absolute;
+  color: #68686b;
+  font-size: 20px;
+}
+.forms .form-content .text{
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e1d1d;
+}
+.forms .form-content .text a{
+  text-decoration: none;
+}
+.forms .form-content .text a:hover{
+  text-decoration: underline;
+}
+.forms .form-content .button{
+  color: #fff;
+  margin-top: 40px;
+}
+.forms .form-content .button input{
+  color: #fff;
+  background: #097303;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-size: 15px;
+}
+.forms .form-content .button input:hover{
+  background: #dfed21;
+}
+.forms .form-content label{
+  color: #151515;
+  cursor: pointer;
+}
+.forms .form-content label:hover{
+  text-decoration: underline;
+}
+
+.forms .form-content .sign-up-text1 label{
+  margin-top: 10px;
+  color: red;
+  font-size: 12px;
+}
+.forms .form-content .login-text,
+.forms .form-content .sign-up-text{
+  text-align: center;
+  margin-top: 15px;
+}
+.container #flip{
+  display: none;
+}
+@media (max-width: 730px) {
+  .container .cover{
+    display: none;
+  }
+  .form-content .login-form,
+  .form-content .signup-form{
+    width: 100%;
+  }
+  .form-content .signup-form{
+    display: none;
+  }
+  .container #flip:checked ~ .forms .signup-form{
+    display: block;
+  }
+  .container #flip:checked ~ .forms .login-form{
+    display: none;
+  }
+}
+.container .p{
+	margin-bottom: 38px;
+	color: rgb(229, 117, 117);
+}
+hr{
+  width: 2px; 
+  height: 385px; 
+  background-color: rgb(201, 197, 197);
+  margin-top: 85px;
+}
+marquee{
+  margin-top: -20px;
+}
+
+.b1{
+  margin-left: 50px;
+  width: 95px;
+  height: 35px;
+}
+.b2{
+  height: 35px;
+  margin-left: 10px;
+  width: 95px;
+}
+.signup-form button{
+  height: 35px;
+  width: 65px;
+  margin-left: 18%;
+  margin-top: 15px;
+}
+.validation{
+  margin-bottom: 25px;
+}
+.bouton{
+  display: flex;
+  margin-top: 65px;
+}
+.ghost{
+ border-radius: 6px;
+  height: 25px;
+  width: 65px;
+  font-size: 15px;
+  margin-right: -160px;
+}

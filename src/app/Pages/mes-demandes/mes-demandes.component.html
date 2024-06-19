@@ -1,0 +1,25 @@
+<!-- <p>list-demandes works!</p> -->
+<table class="table table-striped">
+
+    <thead>
+        <th>prenom et nom</th>
+        <th>CNI</th>
+        <th>Date et Lieu de Naissance</th>
+        <th>Fonction</th>
+        <th>telephone</th>
+        <th>Statut</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let demande of listDemande">
+            <td>{{ demande.demandeurDTO.fullName }} </td>
+            <td>{{ demande.demandeurDTO.nin}}</td>
+            <td>{{demande.demandeurDTO.datedenaissance}} {{demande.demandeurDTO.lieudenaissance}}</td>
+            <td>{{demande.demandeurDTO.fonction}}</td>
+            <td>{{demande.demandeurDTO.telephone}}</td>
+            <td>{{demande.statut}}</td>
+            <td><a [routerLink]="['/verificationattestation', demande.id ]" ><img src="/assets/vues/icons8-modifier-48.png" alt=""></a></td>
+        </tr>
+
+    </tbody>
+</table>

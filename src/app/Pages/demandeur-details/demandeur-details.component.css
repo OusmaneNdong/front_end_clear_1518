@@ -1,0 +1,17 @@
+.container-fluid{
+    margin-left: 15%;
+    margin-top: 3%;
+}
+h1{
+    text-align: center;
+    margin-top: 5%;
+    text-transform: uppercase;
+}
+
+button{
+    margin-top: 3%;
+    margin-left: 4%;
+}
+.bouton{
+    margin-left: 20%;
+}

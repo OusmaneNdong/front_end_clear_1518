@@ -1,0 +1,18 @@
+
+  button{
+    border: none;
+  }
+  img{
+    width: 40px;
+    height: 40px;
+  }
+.loader {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 18px;
+    animation: l1 1s linear infinite alternate;
+  }
+  .loader:before {
+    content:"En cour..."
+  }
+  @keyframes l1 {to{opacity: 0.5}}

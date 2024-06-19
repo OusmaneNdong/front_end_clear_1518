@@ -1,0 +1,100 @@
+<app-header></app-header>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">En cours...</p>
+</ngx-spinner>
+
+<!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="UTF-8">
+      <title> Formulaire de connexion | Fonction Publique</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     </head>
+  <body>
+    <div class="container">
+		<marquee behavior="scroll" direction="left">
+			<p class="p"> 
+				<span class="text-1">Beinvenue, Veillez vous connectez si vous avez déja un compte</span>
+				<span class="text-2"><b> par compte inscrivez-vous, Merci !</b></span>
+			</p>
+		</marquee>
+		
+      <input type="checkbox" id="flip">
+      <div class="cover">
+        <div class="front">
+          <!-- <img src="/assets/vues/r6.jpeg" alt=""> -->
+          <img src="/assets/vues/f1.jpeg" alt="">
+          <!-- <img src="/assets/vues/a1.jpeg" alt=""> -->
+        </div>
+
+        <div class="col-md-auto">
+          <hr>
+        </div>
+
+        <div class="back">
+          <div class="text">
+          </div>
+        </div>
+      </div>
+      <div class="forms"  id="container">
+          <div class="form-content">
+            <!-- <div class="container" id="container"></div> -->
+            <div class="login-form">
+              <div class="title">Connexion</div>
+            <form [formGroup]="loginForm">
+              <div class="input-boxes">
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input type="text" formControlName="email" placeholder="Enter votre email" required>
+                  <div *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                    <span *ngIf="loginForm.controls.email.errors.required" style="font-size: 10px; color: red;">veuillez renseinger votre email !</span>
+                    <span *ngIf="loginForm.controls.email.errors.pattern" style="font-size: 10px; color: red;">email incorrect</span>
+                    </div>
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" formControlName="password" placeholder="Saisir votre Mot de passe" required>
+                  <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                    <span *ngIf="loginForm.controls.password.errors.reqired" style="font-size: 10px; color: red;">veuillez renseinger votre mot de passe !</span>
+                    <span *ngIf="loginForm.controls.password.errors.pattern" style="font-size: 10px; color: red;">email incorrect</span>
+                    </div>
+                </div>
+                <div class="text sign-up-text1"><label for="flip">Mot de Pass Oublié?</label></div>
+                <div class="button input-box">
+                  <div class="validation">
+                    <button class="b1 btn btn-danger">Annuler</button>
+                    <button  class="b2 btn btn-success" (click)="handleSubmit() ; openSpinner()" [disabled]="(loginForm.invalid)">Connexion</button>
+                    
+                  </div>
+                </div>
+                <div class="text sign-up-text">Je n'ai pas de compte? <label for=""><a routerLink="/signup">S'inscrire</a></label></div>
+              </div>
+          </form>
+        </div>
+         <div class="signup-form">
+            <div class="title">Mot de Passe Oublié</div> 
+          <form [formGroup]="forgotPasswordForm">
+              <div class="input-boxes">
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input type="text" formControlName="email" placeholder="Enter votre email" required>
+                  <div *ngIf="forgotPasswordForm.controls.email.touched && forgotPasswordForm.controls.email.invalid">
+                    <span *ngIf="forgotPasswordForm.controls.email.errors.required" style="font-size: 10px; color: red;">veuillez renseinger votre email !</span>
+                    <span *ngIf="forgotPasswordForm.controls.email.errors.pattern" style="font-size: 10px; color: red;">email incorrect</span>
+                    </div>
+                </div>
+                <div class="bouton">
+                  <button class="btn btn-success" (click)="handlePassword() ; openSpinner() ;  refreshPage();" [disabled]="(forgotPasswordForm.invalid)">envoie</button>
+                  <button class="ghost btn-danger" id="signIn" (click)="refreshPage()">Retour</button>
+                </div>
+              </div>
+        </form>
+      </div>
+      </div>
+      </div>
+    </div>
+  </body>
+  </html>
+  <app-footer></app-footer>
+

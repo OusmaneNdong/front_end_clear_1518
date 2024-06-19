@@ -1,0 +1,20 @@
+<app-header></app-header>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "timer" [fullScreen] = "true"><p style="color: white" > rejet demande en cours... </p></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<button type="button" class="btn b1 btn-outline-success btn-lg"><a routerLink="/mesdemandes">Mes Demandes</a></button>
+	<button type="button" class="btn b2 btn-outline-info btn-lg"><a (click)="onMakeDemande() ; openSpinner()">Effectuer Une Demande</a></button>
+
+<div>
+</div>
+
+</body>Í
+</html>
+<!-- <app-footer></app-footer> -->
