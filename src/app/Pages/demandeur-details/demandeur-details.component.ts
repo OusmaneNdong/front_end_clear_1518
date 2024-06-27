@@ -45,7 +45,7 @@ export class DemandeurDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params['id']);
-    this.utilisateurId = Number(localStorage.getItem("utilisateurId"));
+    this.utilisateurId = Number(localStorage.getItem("userId"));
     const demandeurId = Number(this.route.snapshot.paramMap.get('demandeurId'));
     const demandeId = Number(this.route.snapshot.paramMap.get('demandeId'));
 

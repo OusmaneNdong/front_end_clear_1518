@@ -25,6 +25,7 @@ export class DemandeurComponent implements OnInit{
 
   token!:string;
   demandeur: Demandeur = {};
+  completedDemandeur: Demandeur = {};
   nin!:string;
   idDemandeur!:number
   password = true;
@@ -50,7 +51,9 @@ export class DemandeurComponent implements OnInit{
 
 
   ngOnInit(): void {
-    // console.log("getNin()", this.helperService.);
+    console.log("getNin()", localStorage.getItem("nin"));
+    console.log(this.completedDemandeur);
+    
     this.nin = this.getNin();
     this.demandeurForm = this.formBuilder.group({
       telephone:[null , Validators.required],
@@ -84,6 +87,15 @@ export class DemandeurComponent implements OnInit{
       console.log("false" + this.signForm.controls);
       return false;
     }
+  }
+
+  validationRegister(){
+    if(this.demandeurForm.controls['telephone'] !== null && this.demandeurForm.controls['datedenaissance'] !== null 
+      && this.demandeurForm.controls['nin'] !== null && this.demandeurForm.controls['scannernin'] !== null &&
+      this.demandeurForm.controls['telephone'] !== null && this.demandeurForm.controls['adresse'] !== null &&
+      this.demandeurForm.controls['sexe'] !== null && this.demandeurForm.controls['foction'] !== null){
+        this.router.navigate(['/espaceClient']);
+      }
   }
 
   handleSubmit(){
@@ -155,6 +167,8 @@ export class DemandeurComponent implements OnInit{
       }
     );
   }
+
+    
 
 
 

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { SignupComponent } from './Pages/signup/signup.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './Pages/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -46,6 +46,9 @@ import { CardComponent } from './Pages/card/card.component';
 import { AdminDasboardComponent } from './Pages/admin-dasboard/admin-dasboard.component';
 import { AdminDashComponent } from './admin-dash/admin-dash.component';
 import { DemosComponent } from './Pages/demos/demos.component';
+import { HeadComponent } from './Pages/head/head.component';
+import { ValidationComponent } from './Pages/validation/validation.component';
+import { TokenService } from './Services/token/token.service';
 // import { MbscModule } from '@mobiscroll/angular';
 
 
@@ -79,6 +82,8 @@ import { DemosComponent } from './Pages/demos/demos.component';
     AdminDasboardComponent,
     AdminDashComponent,
     DemosComponent,
+    HeadComponent,
+    ValidationComponent,
 
   ],
   imports: [
@@ -112,7 +117,14 @@ import { DemosComponent } from './Pages/demos/demos.component';
     
     
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : TokenService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

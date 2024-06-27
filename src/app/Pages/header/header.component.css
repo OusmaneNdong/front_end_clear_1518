@@ -23,6 +23,13 @@ table{
   padding-top: 31px;
   
 }
+@media screen {
+  .logo img{
+    padding-top: 11px;
+    
+  }
+  
+}
 .minlogo img{
   padding-bottom: 10px;
   margin-right: 10px;

@@ -20,14 +20,14 @@
             <input type="email" name="email" placeholder="example@gmail.com" class="form_input" formControlName="email" (paste)="onPaste($event)" />
             <div *ngIf="signupForm.controls.email.touched && signupForm.controls.email.invalid">
               <span *ngIf="signupForm.controls.email.errors.required">veuillez renseinger votre email!</span>
-              <span *ngIf="signupForm.controls.email.errors.pattern">This field is invalid.</span>
+              <span *ngIf="signupForm.controls.email.errors.pattern">format email incorrect</span>
             </div>
           </div>
           <input type="email" name="confirmemail" formControlName="confirmemail" class="form_input" placeholder="Confirmation Email"
             (paste)="onPaste($event)" required />
           <div *ngIf="signupForm.controls.confirmemail.touched && signupForm.controls.confirmemail.invalid">
             <span *ngIf="signupForm.controls.confirmemail.errors.required">répétez votre email !</span>
-            <span *ngIf="signupForm.controls.confirmemail.errors.pattern">This field is invalid.</span>
+            <span *ngIf="signupForm.controls.confirmemail.errors.pattern">format email incorrect</span>
           </div>
 
           <input type="password" name="password" formControlName="password" class="form_input" placeholder="Mot de Passe" />

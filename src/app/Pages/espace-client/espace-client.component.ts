@@ -36,14 +36,14 @@ nin!: string;
     const id = this.activaterouter.snapshot.paramMap.get('id');
     const demandeurId = this.activaterouter.snapshot.paramMap.get('demandeurId');
 
-        console.log(demandeurId);
+        console.log("id ="+demandeurId);
         this.getDemandeur();
         //this.makeDemande();
          this.nin= localStorage.getItem("nin")!;
          console.log("nin"+this.nin);
          
         this.getDemandeurByNin();
-        console.log("idD"+this.demandeur.id);
+        console.log("idD ="+this.demandeurId);
         
  }
 
@@ -58,8 +58,6 @@ nin!: string;
 
 
 onMakeDemande(){
-
- 
   this.demandeService.makeDemande(Number(this.demandeurId)).subscribe({
     next:(data)=>{
       console.log("resultat"+data);

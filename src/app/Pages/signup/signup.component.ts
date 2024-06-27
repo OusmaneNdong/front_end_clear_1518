@@ -53,8 +53,8 @@ showStatusInput: boolean = true;
     this.signupForm = this.formBuilder.group({
       prenom:[null , [Validators.required]],
       nom:[null, [Validators.required]],
-      email:[null , Validators.required],
-      confirmemail:[null , [Validators.required]],
+      email:[null , Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)],
+      confirmemail:[null , [Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       password:[null , Validators.required],
       confirmpassword:[null , [Validators.required]],
       nin:[null , [Validators.required, Validators.maxLength(13)]],
@@ -164,5 +164,62 @@ showStatusInput: boolean = true;
   changeLegend() {
     this.legendText = "New Legend Text"; // Change it to whatever text you want
   }
+  setError= (id: HTMLElement, text: string)=>{
+    const errorElement = id.parentElement?.querySelector('.error');
+    if(errorElement){
+     errorElement.innerHTML = text;
+    }
+ }
 
+  validation(event: Event) {
+    
+   event.preventDefault();
+
+   const form = event.target as HTMLAnchorElement;
+   const inputs = form.querySelectorAll('input');
+   let isValid = true;
+   let pass = '';
+   let emailform = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+   inputs.forEach((id)=>{
+     if(id.type === 'text'){
+       if(id.value === ''){
+         this.setError(id, "saisir votre nom");
+         isValid = false;
+       }else {
+         this.setError(id, "");
+       }
+     }
+
+    else if(id.type === 'email'){
+       if(id.value === ''){
+         this.setError(id, "saisir votre email");
+         isValid = false;
+       }else if(!emailform.test(id.value)){
+         this.setError(id, "format email incorrect");
+       }else {
+         this.setError(id, "");
+       }
+     }
+
+    else if(id.type === 'password'){
+       if(id.name === 'confirmpassword'){
+         if(id.value !== pass){
+             this.setError(id, "mot de passe et confirm mot de passe not identiques")
+         }else {
+           this.setError(id, "");
+         }
+
+       }else{
+         pass = id.value;
+         if(id.value === ''){
+           this.setError(id, "saisir votre mot de passe");
+           isValid = false;
+         }else {
+           this.setError(id, "");
+         }
+       }
+     }
+   })
+ }
 }

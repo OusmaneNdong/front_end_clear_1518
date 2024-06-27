@@ -24,19 +24,43 @@ import { MesDemandesComponent } from './Pages/mes-demandes/mes-demandes.componen
 import { CardComponent } from './Pages/card/card.component';
 import { AdminDasboardComponent } from './Pages/admin-dasboard/admin-dasboard.component';
 import { DemosComponent } from './Pages/demos/demos.component';
+import { HeadComponent } from './Pages/head/head.component';
+import { ValidationComponent } from './Pages/validation/validation.component';
+import { AdminGuardGuard } from './Services/guard/admin-guard.guard';
+import { TokenGuardGuard } from './Services/guard/token-guard.guard';
 // import { DialogComponent } from './Pages/dialog/dialog.component';
 
 const routes: Routes = [
+  {path:'validation',component:ValidationComponent},
   {path:'formule',component:FormuleComponent},
   { path:'footer',component:FooterComponent },
   { path:'header', component: HeaderComponent },
   { path:'accueil',component:AccueilComponent },
+  {
+    path: 'user',
+    component: AccueilComponent,
+    children:[
+      { path:"demandeur",component:DemandeurComponent },
+      { path:"espaceClient", component:EspaceClientComponent },
+     {path:'',redirectTo:'accueil', pathMatch:'full'}
+    ]
+
+  },
+  {
+    path: 'admin',
+    component: ListDemandesComponent,
+    children:[
+      {path:"list_demandes",component:ListDemandesComponent},
+      {path:"verificationattestation/:id",component:DemandeurDetailsComponent}
+    ]
+  },
+   {path:"head", component:HeadComponent},
   {path:'setPassword/:email',component:SetPasswordComponent},
-  {path:'',redirectTo:'accueil', pathMatch:'full'},
+  
   // {path:'**',redirectTo:'accueil', pathMatch:'full'},
   { path:"login",component:LoginComponent },
   {path:"demande_details/:id",component:DemandeDetailsComponent},
-  {path:"verificationattestation/:id",component:DemandeurDetailsComponent},
+  {path:"verificationattestation/:id",component:DemandeurDetailsComponent, canActivate: [AdminGuardGuard]},
   {path:"utilisateur_details/:id",component:UtilisateurDetailsComponent},
   {path:"signup",component:SignupComponent},
   {path:'test',component:TestComponent},
@@ -44,18 +68,21 @@ const routes: Routes = [
   {path:"espace",component:EspaceComponent},
   { path:"password",component:ForgotPasswordComponent },
   { path:"demandeur",component:DemandeurComponent },
-  {path:"mesdemandes",component:MesDemandesComponent},
+  {path:"mesdemandes/:id",component:MesDemandesComponent, canActivate: [TokenGuardGuard]},
  { path:"espaceClient", component:EspaceClientComponent },
  {path:"card",component:CardComponent},
  {path:"administration",component:AdminDasboardComponent},
  {path:"demo", component:DemosComponent},
- { path: "dash",component:DashComponent,children:[
-  {path:'',redirectTo:'dash/dashbord', pathMatch:'full'},
-  {path:'', redirectTo:'list_demandes',pathMatch:'full'},
+ { path: "dash",component:DashComponent
+ , canActivate: [AdminGuardGuard]
+ ,children:[
+ {path:'',redirectTo:'dash/list_demandes', pathMatch:'full'},
+  //{path:'', redirectTo:'list_demandes',pathMatch:'full'},
   { path:"table",component:TablesComponent},
   { path:"dashbord",component:DashbordComponent},
-  {path:"list_demandes",component:ListDemandesComponent}
- ]}
+  {path:"list_demandes",component:ListDemandesComponent},
+  {path:'',redirectTo:'accueil', pathMatch:'full'} 
+]}
 ];
 
 @NgModule({

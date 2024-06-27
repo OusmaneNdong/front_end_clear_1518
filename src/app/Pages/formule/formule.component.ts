@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/Services/auth.service';
 import { HelperService } from 'src/app/Services/helper.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DemandeurService } from 'src/app/Services/demandeur.service';
+import { Demandeur } from 'src/app/modeles/demandeur.modele';
 
 @Component({
   selector: 'app-formule',
@@ -20,6 +22,8 @@ export class FormuleComponent implements OnInit {
   forgotPasswordForm:any = FormGroup;
   loginForm:any = FormGroup;
   responseMessage:any;
+  demandeur: Demandeur = {}
+  isComplete: any = false
   private jwtHelper: JwtHelperService = new JwtHelperService();
   
 
@@ -32,7 +36,7 @@ export class FormuleComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private router:Router,private utilisateurService:UtilisateurService,
                private snackbarService:SnackbarService,private route : ActivatedRoute,
                 private spinner: NgxSpinnerService, private authService: AuthService,
-                private helperService: HelperService) {}
+                private helperService: HelperService, private demandeurService: DemandeurService) {}
 
     openSpinner(){
       this.spinner.show();
@@ -43,6 +47,9 @@ export class FormuleComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    //console.log("tester");
+    
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
@@ -69,7 +76,8 @@ export class FormuleComponent implements OnInit {
     this.forgotPasswordForm = this.formBuilder.group({
       email:[null,[Validators.required,Validators.pattern(GlobalConstants.emailRegex)]]
     })
-
+    
+     
   
   }
 
@@ -94,10 +102,12 @@ export class FormuleComponent implements OnInit {
         this.utilisateurService.isLoaging = true;
         console.log(t.profile);
         if (t.profile=="user") {
+          this.getDemandeurByNin(t.nin)
+          
           this.router.navigate(['/demandeur']); 
         }
        if (t.profile=="admin") {
-        this.router.navigate(['/administration']) 
+        this.router.navigate(['/dash/list_demandes']) 
        } 
         
         
@@ -166,10 +176,25 @@ export class FormuleComponent implements OnInit {
 }
 
 getbutton(){
+  
+}
+
+getDemandeurByNin(nin: string){
+  this.demandeurService.getDemandeurByNin(nin).subscribe({
+    next:(data)=>{
+      if(data.completed){
+        this.router.navigate(['/espaceClient'])
+      }
+    }
+  })
 }
 
 
 
 }
 
+
+function next(value: Object): void {
+  throw new Error('Function not implemented.');
+}
 

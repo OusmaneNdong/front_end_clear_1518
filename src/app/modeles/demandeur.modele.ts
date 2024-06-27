@@ -15,5 +15,5 @@ export interface Demandeur{
     statut?:string;
     utilisateurDTO?: any;
     demandeDTO?: any;
-
+    completed?:boolean;
 }

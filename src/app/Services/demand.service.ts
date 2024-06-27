@@ -28,6 +28,11 @@ export class DemandService {
       headers:new HttpHeaders().set('Content-Type' , 'application/json')
     });
   }
+  mesDemandes(id: number):Observable<Demande[]>{
+    return this.httpClient.get<Demande[]>(this.url + "/api/demande/findDemandeurById/"+ id,{
+      headers:new HttpHeaders().set('Content-Type' , 'application/json')
+    });
+  }
 
   makeDemande(demandeurId: number){
     return this.httpClient.post(this.url + "/api/demande/demandez/" + demandeurId, {});

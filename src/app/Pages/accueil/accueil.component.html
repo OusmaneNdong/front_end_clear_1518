@@ -40,7 +40,8 @@
          
          
        <app-footer></app-footer> -->
-       <app-header></app-header>
+       <!-- <app-header></app-header> -->
+       
 
      <!DOCTYPE html>
      <html lang="en">
@@ -51,13 +52,15 @@
       
       <title>Document</title>
      </head>
+    
      <body>
-
+      
        
      
 
       <!-- Background & animion & navbar & title -->
         <div class="container-fluid">
+          <app-head></app-head>
       <!-- Background animtion-->
           <div class="background">
              <div class="cube"></div>
@@ -67,30 +70,22 @@
             <div class="cube"></div>
           </div>
       <!-- header -->
-         <header>
-      <!-- navbar -->
-           <!-- <nav>
-              <ul>
-                 <li><a href="#">Home</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Portfolio</a></li>
-                  <li><a href="#">Contact</a></li>
-               </ul>
-             </nav> -->
-      <!-- logo -->
-            <div class="logo"><span>N</span></div>
-      <!-- title & content -->
-            <section class="header-content">
-               <h1>BIENVENUE</h1>
-               <h5>SUR LA PLATEFORME DE DEMANDE D'ATTESTATION <br>
-                DE NON APPARTENANCE A LA FONCTION PUBLIQUE</h5>
-              <p> Merci de vous connectez si vous avez déjà un comtpe ou bien,<br>
-                 Allez vous inscrire avant d'effectuer votre demande d'attestation.</p>
-              <button><a routerLink="/formule">Se connecter</a></button>
-              <button><a routerLink="/signup">S'inscrire</a></button>
-            </section>
-        </header>
+      <div>
+        <section class="section-accueil">
+          <h2>BIENVENUE</h2>
+          <h5>SUR LA PLATEFORME DE DEMANDE D'ATTESTATION <br>
+            DE NON APPARTENANCE A LA FONCTION PUBLIQUE</h5>
+        </section>
+      </div>
+      <div class="background">
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+       <div class="cube"></div>
+     </div>
+      
+         
         </div>
       
      </body>

@@ -1,3 +1,12 @@
+.section-accueil {
+  color: #ffc107;
+  padding: 50px 0;
+  background: #EFEEF5;
+  text-align: center;
+  h5{
+    color: black;
+  }
+}
 /* table{
     margin: 0px;
     padding: 0px;
@@ -71,27 +80,14 @@
     margin-left: 50px;
     margin-top: -550px;
   } */
-  body {
-    font-family: 'Josefin Sans', sans-serif;
-    box-sizing: border-box;
-   
-    /* margin-top: -660px; */
-  }
 
-  .container-fluid{
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background: #FFF;
-  }
   /* ============= Animation background ========= */
   .background {
     background: linear-gradient(132deg, white, white, white);
     background-size: 400% 400%;
     animation: Gradient 10s ease infinite;
     position: relative;
-    height: 100vh;
+    height: 50vh;
     width: 100%;
     overflow: hidden;
     padding:0;
@@ -99,7 +95,7 @@
   }
   .cube {
     position: absolute;
-    top: 80vh;
+    top: 40vh;
     left: 45vw;
     width: 10px;
     height: 10px;
@@ -110,12 +106,11 @@
   }
   .cube:nth-child(2n) {
     border-color: #FFF ;
-  }
-  .cube:nth-child(2) {
     animation-delay: 2s;
     left: 25vw;
     top: 40vh;
   }
+  
   .cube:nth-child(3) {
     animation-delay: 4s;
     left: 75vw;
@@ -137,112 +132,12 @@
     top: 10vh;
   }
   /* ================= Header ============ */
-  header{
-    position: absolute;
-    top:0%;
-    left: 0%;
-    width:100%;
-    margin: 0;
-    padding: 0;
-  }
-  /* navbar */
-  nav{
-    color: #FFF;
-    float: right;
-    margin:30px 90px;
-  }
-  nav ul{
-    list-style: none;
-  }
-  nav ul li {
-    float: left;
-    transition: .3s;
-  }
-  nav ul li a{
-    text-decoration: none;
-    color: #EFEEF5;
-    transition: .5;
-    font-size: 15px;
-    margin-left:16px;
-  }
-  nav ul li:hover a{
-    text-decoration: none;
-    color: #591BC5;;
-  }
-  nav ul li:hover{
-    height: 45px;
-    padding-top: 30px;
-    margin-top: -30px;
-   background: #EFEEF5;
-    text-decoration: none;
-    transform: skew(15deg);
-  }
-  /* Logo */
-  .logo{
-    width: 35px;
-    height: 35px;
-    background: #EFEEF5;
-    margin: 40px 63px;
-    float: left;
-    transform: rotate(-30deg);
-  }
-  .logo span{
-    color: #591BC5;
-    font-size: 2em;
-    line-height: 1.4;
-    padding-left: 5px;
-    font-weight: bold;
-  }
+  
+  
   /* Header content & title & button*/
-  .header-content{
-    margin-top:25%;
-    text-align: center;
-    color:  #EFEEF5;
-  }
-  .header-content h1{
-    text-transform: uppercase;
-    font-size: 6em;
-    letter-spacing: 1px;
-    font-family: ar;
-    color: #ffc107;
-    margin-bottom: 90px;
-  }
-  h1,h5,p{
-    margin-top: -90px;
-  }
-  .header-content h5{
-    text-transform: uppercase;
-    font-size: 2em;
-    letter-spacing: 1px;
-    font-family: ar;
-    color: green;
-
-  }
+    
   
   
-  .header-content p {
-    font-size: 20px;
-    line-height: 1.5;
-    margin: 20px auto;
-    font-family: ar;
-    color: black;
-  }
-  .header-content button{
-    width: 140px;
-    margin:20px 10px;
-    color: #591BC5;
-    font-size: 17px;
-    border:1px solid #EFEEF5;
-    font-weight: 500;
-    background: #EFEEF5;
-    border-radius: 20px;
-    padding: 10px;
-    cursor:pointer;
-    transition: .3s;
-  }
-  .header-content button:hover{
-    border-radius: 0;
-  }
   /* Animate Background*/
   @keyframes Gradient {
     0% {
@@ -265,3 +160,5 @@
       opacity: 0;
     }
   }
+
+  

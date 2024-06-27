@@ -36,12 +36,12 @@ html, body {
     /* background-color: #dbd6d6; */
     }
     form {
-    width: 100%;
+    
     padding: 20px;
     border-radius: 6px;
     background: #f2f2f2;
     box-shadow:  0 0 8px  #669999;
-    margin: 160px;
+    margin: 180px;
     }
     .banner {
     position: relative;
@@ -184,7 +184,21 @@ html, body {
     /* button:hover {
     background:  #a3c2c2;
     } */
+
+    @media (min-width: 360px) {
+            .testbox{
+                display: block;
+            }
+            .btn-block{
+                display: block;
+            }
+    }
     @media (min-width: 568px) {
+        button{
+        }
+        .testbox{
+            display: flex;
+        }
     .name-item, .city-item {
     display: flex;
     flex-wrap: wrap;
