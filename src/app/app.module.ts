@@ -55,6 +55,8 @@ import { ViewFileComponent } from './Pages/view-file/view-file.component';
 import { NavlinkComponent } from './Pages/navlink/navlink.component';
 import { ResetComponent } from './Pages/reset/reset.component';
 import { UpdateDemandeurComponent } from './Pages/update-demandeur/update-demandeur.component';
+import { HeadersComponent } from './Pages/headers/headers.component';
+import { FootersComponent } from './Pages/footers/footers.component';
 // import { MbscModule } from '@mobiscroll/angular';
 
 
@@ -95,6 +97,8 @@ import { UpdateDemandeurComponent } from './Pages/update-demandeur/update-demand
     NavlinkComponent,
     ResetComponent,
     UpdateDemandeurComponent,
+    HeadersComponent,
+    FootersComponent,
 
   ],
   imports: [

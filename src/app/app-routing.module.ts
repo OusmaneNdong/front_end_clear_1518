@@ -33,6 +33,8 @@ import { ViewFileComponent } from './Pages/view-file/view-file.component';
 import { NavlinkComponent } from './Pages/navlink/navlink.component';
 import { ResetComponent } from './Pages/reset/reset.component';
 import { UpdateDemandeurComponent } from './Pages/update-demandeur/update-demandeur.component';
+import { FootersComponent } from './Pages/footers/footers.component';
+import { HeadersComponent } from './Pages/headers/headers.component';
 // import { DialogComponent } from './Pages/dialog/dialog.component';
 
 const routes: Routes = [
@@ -72,6 +74,8 @@ const routes: Routes = [
   {path:"verificationattestation/:id",component:DemandeurDetailsComponent, canActivate: [AdminGuardGuard]},
   {path:"utilisateur_details/:id",component:UtilisateurDetailsComponent,canActivate: [AdminGuardGuard,TokenGuardGuard]},
   {path:"signup",component:SignupComponent},
+  {path:'footers',component:FootersComponent},
+  {path:'headers',component:HeadersComponent},
   {path:'test',component:TestComponent},
   { path:"home",component:HomeComponent },
   {path:"espace",component:EspaceComponent},
