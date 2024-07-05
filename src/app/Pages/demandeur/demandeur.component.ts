@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HelperService } from 'src/app/Services/helper.service';
 import { Demandeur } from 'src/app/modeles/demandeur.modele';
+import { event } from 'jquery';
 
 @Component({
   selector: 'app-demandeur',
@@ -22,6 +23,8 @@ import { Demandeur } from 'src/app/modeles/demandeur.modele';
 export class DemandeurComponent implements OnInit{
 
   private helper = new JwtHelperService();
+
+  filechier!: File; 
 
   token!:string;
   demandeur: Demandeur = {};
@@ -36,6 +39,7 @@ export class DemandeurComponent implements OnInit{
   hide: any;
   userId!: number;
   loginForm: any = FormGroup;
+  file!: string;
   constructor(
     private formBuilder:FormBuilder, private router:Router,
       private demandeurService:DemandeurService,private snackbarService:SnackbarService,
@@ -45,7 +49,7 @@ export class DemandeurComponent implements OnInit{
       this.spinner.show();
       setTimeout(()=>{
         this.spinner.hide();
-      },6000)
+      },5000)
     }
     
 
@@ -60,11 +64,20 @@ export class DemandeurComponent implements OnInit{
       datedenaissance:[null , [Validators.required]],
       lieudenaissance:[null, [Validators.required]],
       nin:[this.helperService.nin , Validators.required],
-      scannernin:[null , [Validators.required]],
+      scannernin:[null, [Validators.required]],
       adresse:[null , [Validators.required]],
       sexe:[null , [Validators.required]],
       fonction:[null , [Validators.required]]
 
+    })
+  }
+
+  uploadFile(file: File){
+    this.demandeurService.uploadFile(file,1).subscribe({
+      next:(response)=>{
+        this.demandeur = response;
+  
+      }
     })
   }
   getIdDemandeur(){
@@ -113,11 +126,52 @@ export class DemandeurComponent implements OnInit{
       
     }
     console.log(data);
-    this.demandeurService.signup(data).subscribe((response:any)=>{
+    this.demandeurService.signup(data).subscribe({
+      next:(data)=>{
+        this.demandeurService.uploadFile(this.filechier, data).subscribe({
+          next:(data)=>{
+            console.log("ok +"+data);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Bravo Votre Profile est complet.",
+              showConfirmButton: true,
+              timer: 5000
+            })
+            
+          }
+        })
+        localStorage.setItem('nin', this.getNin());
+         this.responseMessage = data;
+         this.snackbarService.openSnackBar(this.responseMessage,"");
+         this.router.navigate(['/espaceClient']);
+      },
+      error:(err:any)=>{
+        if (err.error.errorMessage==='NOT_FOUND') {
+          alert("not found")
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "not found ",
+            showConfirmButton: false,
+            timer: 5000
+          })
+        }
+      }
+    })
+    /*this.demandeurService.signup(data).subscribe((response:any)=>{
+      console.log(response);
+      (response)
+      this.demandeurService.uploadFile(this.filechier, response).subscribe({
+        next:(data)=>{
+          console.log("ok +"+response);
+          
+        }
+      })
       localStorage.setItem('nin', this.getNin());
        this.responseMessage = response?.message;
        this.snackbarService.openSnackBar(this.responseMessage,"");
-        this.router.navigate(['/espaceClient']);
+       this.router.navigate(['/espaceClient']);
     },(error: { error: { message: any; }; })=>{
       if(error.error?.message){
         this.responseMessage = error.error?.message;
@@ -126,9 +180,15 @@ export class DemandeurComponent implements OnInit{
       }
       alert(this.responseMessage + " " + GlobalConstants.error);
       this.snackbarService.openSnackBar(this.responseMessage , GlobalConstants.error);
-    })
+    })*/
   }
 
+  onImageUpload(event: any){
+    if(event.target.files.length > 0  ){
+      this.filechier = event.target.files[0];
+    }
+    
+  }
 
 
   registerByRetrieve(): void {

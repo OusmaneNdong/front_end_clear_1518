@@ -41,19 +41,13 @@ getAll(){
   })
 }
 getAllRejeted(){
-  this.dashbordService.getByStatutRejeted().subscribe((response:any)=>{
-    this.rejetDemande = response;
-  })
+  
 }
 getAllCours(){
-  this.dashbordService.getByStatutCours().forEach((response:any)=>{
-    this.coursDemande = response;
-  })
+  
 }
 getAllApprouved(){
-  this.dashbordService.getByStatutApprouved().subscribe((response:any)=>{
-    this.approuveDemande = response;
-  })
+  
 }
 
 getByStatut(statut: string){

@@ -16,7 +16,7 @@ export class DashComponent implements OnInit{
   dataApprouved: Demande[]=[];
   dataRejeted: Demande[]=[];
   dataCours: Demande[]=[];
-  approuves: Demande[]=[];
+  //approuves: Demande[]=[];
   rejetes: Demande[]=[];
   cours: Demande[]=[];
 
@@ -30,7 +30,7 @@ constructor(private dashbordService:DashbordService,private routes:Router){}
     this.getCours();
     this.getRejeted();
 
-    this.getAllApprouved();
+   //this.getAllApprouved();
     this.getAllCours();
     this.getAllRejeted();
   }
@@ -61,24 +61,20 @@ constructor(private dashbordService:DashbordService,private routes:Router){}
       
     })
   }
-  getAllApprouved(){
-    this.dashbordService.getByStatutApprouved().subscribe((response:any)=>{
-      this.approuves = response;
+  // getAllApprouved(){
+  //   this.dashbordService.getByStatutApprouved().subscribe((response:any)=>{
+  //     this.approuves = response;
       
-    })
-  }
+  //   })
+  // }
   getAllRejeted(){
-    this.dashbordService.getByStatutRejeted().subscribe((response:any)=>{
-      this.rejetes = response;
+    // this.dashbordService.getByStatutRejeted().subscribe((response:any)=>{
+    //   this.rejetes = response;
       
-    })
+    // })
   }
   getAllCours(){
-    this.dashbordService.getByStatutCours().subscribe((response:any)=>{
-      this.cours = response;
-      
-      
-    })
+    
   }
 
 }

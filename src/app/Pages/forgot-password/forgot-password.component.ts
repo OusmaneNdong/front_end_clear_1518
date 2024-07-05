@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { data } from 'jquery';
+import { data, error } from 'jquery';
 import { HelperService } from 'src/app/Services/helper.service';
 
 @Component({
@@ -68,11 +68,59 @@ export class ForgotPasswordComponent implements OnInit{
       email:this.helperService.email,
       oldPassword:formData.oldPassword,
       newPassword:formData.newPassword,
-      confirmPassword:formData.confirmPassword
+      confirm:formData.confirmPassword
       
     }
-     alert(data.email+" "+data.newPassword+" "+data.oldPassword);
-    this.utilisateurService.changePassword(data).subscribe((response:any)=>{
+    this.utilisateurService.changePassword(data).subscribe({
+      next:(data)=>{
+        console.log(data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "mot de passe modifiée! ",
+          showConfirmButton: false,
+          timer: 5000
+        }).then(() => {
+          this.router.navigate(['/espaceClient']);      });
+        
+      },
+      error:(err:any)=>{
+        console.log("erreur ="+err.error.errorMessage);
+        if (err.error.errorMessage==='NOT_MATCH_PASSWORD') {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Les mots de passe ne correspondent pas ",
+            showConfirmButton: false,
+            timer: 5000
+          }) 
+        }
+        if (err.error.errorMessage==='NOT_MATCH_PASSWORD_OLD') {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "L'ancien mot de passe saisit n'est pas correct",
+            showConfirmButton: false,
+            timer: 5000
+          }) 
+        }
+        
+        
+        // if(err.error?.message){
+        //   this.responseMessage = err.error?.message;
+        //   Swal.fire({
+        //     icon: "error",
+        //     text: "Erreur de!",
+        //     footer: '<a routerLing="/login">Échec modification !</a>'
+        //   });
+        // }else{
+        //   this.responseMessage = GlobalConstants.genericError;
+        // }
+        // this.snackbarService.openSnackBar(this.responseMessage , GlobalConstants.error);
+      }
+    })
+    // alert(data.email+" "+data.confirm+" "+data.oldPassword);
+    /*this.utilisateurService.changePassword(data).subscribe((response:any)=>{
       this.responseMessage = response?.message;
       this.snackbarService.openSnackBar(this.responseMessage,"");
       alert("ok");
@@ -98,7 +146,7 @@ export class ForgotPasswordComponent implements OnInit{
         this.responseMessage = GlobalConstants.genericError;
       }
       this.snackbarService.openSnackBar(this.responseMessage , GlobalConstants.error);
-    }
+    }*/
     this.registerSucess=true; 
     this.isButtonVisible = false;  
     

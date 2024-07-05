@@ -11,6 +11,7 @@ import { HelperService } from 'src/app/Services/helper.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DemandeurService } from 'src/app/Services/demandeur.service';
 import { Demandeur } from 'src/app/modeles/demandeur.modele';
+import { UtilisateurControllerService } from 'src/app/Services/services/services';
 
 @Component({
   selector: 'app-formule',
@@ -36,13 +37,14 @@ export class FormuleComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private router:Router,private utilisateurService:UtilisateurService,
                private snackbarService:SnackbarService,private route : ActivatedRoute,
                 private spinner: NgxSpinnerService, private authService: AuthService,
-                private helperService: HelperService, private demandeurService: DemandeurService) {}
+                private helperService: HelperService, private demandeurService: DemandeurService,
+                private auth: UtilisateurControllerService) {}
 
     openSpinner(){
       this.spinner.show();
       setTimeout(()=>{
         this.spinner.hide();
-      },6000)
+      },7000)
     }
 
 
@@ -144,7 +146,23 @@ export class FormuleComponent implements OnInit {
     var data = {
       email:formData.email
     }
-    this.utilisateurService.forgotPassword(data.email).subscribe((response:any)=>{
+    this.utilisateurService.forgotPassword(data).subscribe({
+      next:(data)=>{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Un mail vous a été envoyé vous avez 15 mn avant que le token exoire ! ",
+          showConfirmButton: false,
+          timer: 9000
+        }).then(() => {
+          this.router.navigate(['/accueil']);
+          
+        });
+        
+      }
+    })
+    
+    /*this.utilisateurService.forgotPassword(data).subscribe((response:any)=>{
       this.responseMessage = response?.message;
       Swal.fire({
         position: "center",
@@ -168,7 +186,7 @@ export class FormuleComponent implements OnInit {
         this.responseMessage = GlobalConstants.genericError;
       }
        this.snackbarService.openSnackBar(this.responseMessage , GlobalConstants.error);
-    })
+    })*/
  }
 
  refreshPage() {

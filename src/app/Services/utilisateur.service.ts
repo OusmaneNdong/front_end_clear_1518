@@ -26,21 +26,14 @@ isLoaging = false;
   constructor(private httpClient:HttpClient, private router: Router) {}
 
 
-  // signup(data:any){
-  //   return this.httpClient.post(this.url + "/api/utilisateur/inscription" , data , {
-  //     headers:new HttpHeaders().set('Content-Type' , 'application/json')
-  //   })
-  // }
-
   signUp(data:any){
     return this.httpClient.post(this.url + "/api/utilisateur/register" , data , {
       headers:new HttpHeaders().set('Content-Type' , 'application/json')
     })
   }
 
-
-  forgotPassword(email:string){
-    return this.httpClient.put(this.url + "/api/utilisateur/forget-password?email=" + email , {
+  forgotPassword(data:any):Observable<number>{
+    return this.httpClient.post<number>(this.url + "/api/utilisateur/password-reset-request", data , {
       headers:new HttpHeaders().set('Content-Type' , 'application/json')
     })
   }
@@ -60,19 +53,19 @@ logIn(data:any):Observable<AuthenticationResponse>{
   })
 }
 
-changePassword(data:any){
-  return this.httpClient.post(this.url + "/api/utilisateur/change-password" , data , {
+changePassword(data:any):Observable<number>{
+  return this.httpClient.post<number>(this.url + "/api/utilisateur/change-password" , data , {
     headers:new HttpHeaders().set('Content-Type' , 'application/json')
   })
 }
-  changerpassword(data:any){
-    return this.httpClient.post(this.url+"/api/utilisateur/change-password-test", data,{
+  resetpassword(data:any):Observable<string>{
+    return this.httpClient.post<string>(this.url+"/api/utilisateur/reset-password", data,{
       headers:new HttpHeaders().set('Content-Type','application/json')
     })
   }
 
   setPassword(data:any){
-    return this.httpClient.put(this.url + "/api/utilisateur/set-password" , data , {
+    return this.httpClient.post(this.url + "/api/utilisateur/set-password" , data , {
       headers:new HttpHeaders().set('Content-Type' , 'application/json')
     })
   }

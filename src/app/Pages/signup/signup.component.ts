@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+// 
 
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/Services/snackbar.service';
 import { UtilisateurService } from 'src/app/Services/utilisateur.service';
 import { GlobalConstants } from '../shared/global-constants';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import Swal from 'sweetalert2';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -17,57 +17,44 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-
-  selectedIdType: string = 'cni';
-  selectedValue: boolean = true;
-
+  signupForm: any = FormGroup;
+  responseMessage: any;
+  nin: string = '';
+  typenin!:string;
+  legendText: string = "Prénom:";
+  hidePassword: boolean = true;
   private helper = new JwtHelperService();
 
-[x: string]: any;
-nin!:string;
-
-legendText: string = "Prénom:";
-
-
-showStatusInput: boolean = true;
-  password = true;
-  hidePassword: boolean = true;
-  confirmpassword = true;
-  signupForm:any = FormGroup;
-  responseMessage:any;
-  hide: any;
-  loginForm: any = FormGroup;
-  constructor(private formBuilder:FormBuilder,private router:Router,private utilisateurService:UtilisateurService,private snackbarService:SnackbarService,
-                 private spinner: NgxSpinnerService,private route:ActivatedRoute) {}
-
-    openSpinner(){
-      this.spinner.show();
-      setTimeout(()=>{
-        this.spinner.hide();
-      },4000)
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private utilisateurService: UtilisateurService,
+    private snackbarService: SnackbarService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
-    
+    this.signupForm = this.formBuilder.group(
+      {
+        prenom: [null, [Validators.required]],
+        nom: [null, [Validators.required]],
+        email: [null, [Validators.required, Validators.email]],
+        confirmemail: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(6)]],
+        confirmpassword: [null, [Validators.required]],
+        nin: [null, [Validators.required]],
+      },
+      {
+        validators: [this.matchValidator('password', 'confirmpassword'), this.matchValidator('email', 'confirmemail')],
+      }
+    );
+    this.signupForm.get('nin')?.valueChanges.subscribe(() => this.updateNinValidators());
+  
 
-    this.signupForm = this.formBuilder.group({
-      prenom:[null , [Validators.required]],
-      nom:[null, [Validators.required]],
-      email:[null , Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)],
-      confirmemail:[null , [Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
-      password:[null , Validators.required],
-      confirmpassword:[null , [Validators.required]],
-      nin:[null , [Validators.required, Validators.maxLength(13)]],
-      // typePieces:[null, [Validators.required]]
-      // passePort:[null, [Validators.required],]
-    })
-
-
-    
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');
-   
+
     if (signUpButton && container) {
       signUpButton.addEventListener('click', () => {
         container.classList.add("right-panel-active");
@@ -79,64 +66,130 @@ showStatusInput: boolean = true;
         container.classList.remove("right-panel-active");
       });
     }
-
   }
 
-  validateSubmit(){
-    if(this.signupForm.controls['password'].value !== this.signupForm.controls['confirmpassword'].value &&
-      this.signupForm.controls['email'].value !== this.signupForm.controls['confirmemail'].value){
-      return true;
-    }else{
-      return false;
-    }
+  openSpinner() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+  }, 4000);
   }
 
-  getNin(){
-    if( localStorage.getItem("token")?.lastIndexOf != null){
-      const decodedToken = this.helper.decodeToken(localStorage.getItem("token")!);
-      this.nin = decodedToken.nin;
-    }
-    return this.nin;
-  }
+  matchValidator(controlName: string, matchingControlName: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const controlToMatch = control.get(controlName);
+      const matchingControl = control.get(matchingControlName);
 
-  handleSubmit(){
-
-    var formDate = this.signupForm.value;
-    var data = {
-      prenom:formDate.prenom,
-      nom: formDate.nom,
-      email: formDate.email,
-      confirmemail: formDate.confirmemail,
-      password: formDate.password,
-      confirmpassword: formDate.confirmpassword,
-      nin:formDate.nin,
-      // passePort:formDate.passePort
-    }
-
-    this.utilisateurService.signUp(data).subscribe((response:any)=>{
-      this.responseMessage = response?.message;
-        this.snackbarService.openSnackBar(this.responseMessage," ");
-        this.router.navigate(['/formule']);
-    }
-    ,(error: { error: { message: any; }; })=>{
-      if(error.error?.message){
-        this.responseMessage = error.error?.message;
-      }else{
-        this.responseMessage = GlobalConstants.genericError;
+      if (!controlToMatch || !matchingControl) {
+        return null;
       }
-      Swal.fire({
-        position: "center", 
-        icon: 'error',
-        title: this.responseMessage + " " + GlobalConstants.error,
-        text: this.responseMessage
-      });
-      this.snackbarService.openSnackBar(this.responseMessage , GlobalConstants.error);
-    })
+
+      if (matchingControl.errors && !matchingControl.errors['matching']) {
+        return null;
+      }
+
+      if (controlToMatch.value !== matchingControl.value) {
+        matchingControl.setErrors({ matching: true });
+        return { matching: true };
+      } else {
+        matchingControl.setErrors(null);
+        return null;
+      }
+    };
   }
 
-  // refresh(){
-  //   window.location.reload();
-  // }
+  updateNinValidators() {
+    const ninControl = this.signupForm.get('nin');
+    if (this.typenin === 'nin') {
+      ninControl?.setValidators([Validators.required, Validators.maxLength(14)]);
+    } else if (this.typenin === 'passeport') {
+      ninControl?.setValidators([Validators.required, Validators.maxLength(9), Validators.pattern('^[a-zA-Z0-9]*$')]);
+    } else {
+      ninControl?.clearValidators();
+    }
+    ninControl?.updateValueAndValidity();
+  }
+
+  onTypeChange(event: any) {
+    this.updateNinValidators();
+  }
+
+  handleSubmit() {
+    if (this.signupForm.invalid) {
+      this.snackbarService.openSnackBar("Form is invalid", " ");
+      return;
+    }
+
+    const formData = this.signupForm.value;
+    const data = {
+      prenom: formData.prenom,
+      nom: formData.nom,
+      email: formData.email,
+      confirmemail: formData.confirmemail,
+      password: formData.password,
+      confirmpassword: formData.confirmpassword,
+      nin: formData.nin,
+    };
+
+    this.utilisateurService.signUp(data).subscribe({
+      next:(data)=>{
+        //this.snackbarService.openSnackBar(this.responseMessage, " ");
+        this.router.navigate(['/formule']); 
+      },
+      error:(err:any)=>{
+        if (err.error.errorMessage==='EMAIL_EXIST') {
+          Swal.fire({
+            position: "center",
+            icon: 'error',
+            title: 'Inscription',
+            text: 'Cet email existe deja',
+          })
+        }
+        if (err.error.errorMessage==='NIN_EXIST') {
+          Swal.fire({
+            position: "center",
+            icon: 'error',
+            title: 'Inscription',
+            text: 'Cet identifiant existe deja',
+          })
+        }
+        if (err.error.errorMessage==='EMAIL_NIN_EXIST') {
+          Swal.fire({
+            position: "center",
+            icon: 'error',
+            title: 'Inscription',
+            text: 'Email et identifiant existe deja',
+          })
+        }
+      }
+    })
+
+    /*this.utilisateurService.signUp(data).subscribe(
+      (response: any) => {
+        
+        this.responseMessage = response?.message;
+        this.snackbarService.openSnackBar(this.responseMessage, " ");
+        this.router.navigate(['/formule']);
+      },
+      (error: { error: { message: any } }) => {
+        console.log("error.error?.message " + error.error);
+        
+        if (error.error?.message.errorMessage==='EMAIL_EXIST') {
+          this.responseMessage = "Cet email existe deja";
+        } 
+        if (error.error?.message.errorMessage==='NIN_EXIST') {
+          this.responseMessage = "Cet email existe deja";
+        }
+        Swal.fire({
+          position: "center",
+          icon: 'error',
+          title: 'Inscription',
+          text: this.responseMessage,
+        });
+        this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      }
+    );*/
+  }
 
   onPaste(event: ClipboardEvent) {
     event.preventDefault();
@@ -145,81 +198,7 @@ showStatusInput: boolean = true;
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
   }
-
-  onFormSubmit() {
-    this.signupForm.reset();
-    this.signupForm.patchValue({
-      status: 'Your default status value' 
-    });
-    this.showStatusInput = false;
+  get f(): { [key: string]: AbstractControl } {
+    return this.signupForm.controls;
   }
-
-  isCniSelected(): boolean {
-    return this.signupForm.get('cni').value === 'CNI';
-  }
-
-  isPassportSelected(): boolean {
-    return this.signupForm.get('passeport').value === 'PassePort';
-  }
-  changeLegend() {
-    this.legendText = "New Legend Text"; // Change it to whatever text you want
-  }
-  setError= (id: HTMLElement, text: string)=>{
-    const errorElement = id.parentElement?.querySelector('.error');
-    if(errorElement){
-     errorElement.innerHTML = text;
-    }
- }
-
-  validation(event: Event) {
-    
-   event.preventDefault();
-
-   const form = event.target as HTMLAnchorElement;
-   const inputs = form.querySelectorAll('input');
-   let isValid = true;
-   let pass = '';
-   let emailform = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-   inputs.forEach((id)=>{
-     if(id.type === 'text'){
-       if(id.value === ''){
-         this.setError(id, "saisir votre nom");
-         isValid = false;
-       }else {
-         this.setError(id, "");
-       }
-     }
-
-    else if(id.type === 'email'){
-       if(id.value === ''){
-         this.setError(id, "saisir votre email");
-         isValid = false;
-       }else if(!emailform.test(id.value)){
-         this.setError(id, "format email incorrect");
-       }else {
-         this.setError(id, "");
-       }
-     }
-
-    else if(id.type === 'password'){
-       if(id.name === 'confirmpassword'){
-         if(id.value !== pass){
-             this.setError(id, "mot de passe et confirm mot de passe not identiques")
-         }else {
-           this.setError(id, "");
-         }
-
-       }else{
-         pass = id.value;
-         if(id.value === ''){
-           this.setError(id, "saisir votre mot de passe");
-           isValid = false;
-         }else {
-           this.setError(id, "");
-         }
-       }
-     }
-   })
- }
 }

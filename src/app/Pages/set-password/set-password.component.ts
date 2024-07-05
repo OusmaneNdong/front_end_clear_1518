@@ -29,15 +29,17 @@ export class SetPasswordComponent  implements OnInit{
   
   registerSucess:boolean = false;
   isButtonVisible = true;
+  token: string = "";
 
-  constructor(private formBulider:FormBuilder, private utilisateurService:UtilisateurService , 
+  constructor(private formBulider:FormBuilder, private utilisateurService:UtilisateurService, 
     private snackbarService:SnackbarService,private router: Router,
     private spinner: NgxSpinnerService,private helperService: HelperService, private activateRoute: ActivatedRoute
     ) { }
 
 
   ngOnInit(): void {
-    console.log(this.activateRoute.snapshot.params['email']);
+    console.log("log "+this.activateRoute.snapshot.params['token']);
+    this.token = this.activateRoute.snapshot.params['token'];
     
     this.PasswordForm = this.formBulider.group({
       // email:[null, Validators.required],
@@ -52,20 +54,58 @@ export class SetPasswordComponent  implements OnInit{
   handleSubmit(){
     var formData = this.PasswordForm.value;
     var data = {
-      email:this.helperService.email,
+      token:this.token,
       newPassword:formData.newPassword,
       confirmPassword:formData.confirmPassword      
     }
+console.log(data);
 
-     this.utilisateurService.changerpassword(data).subscribe({
-      next:(response:any)=>{
-        alert("Mot de passe changeé !");
-        this.router.navigate(['/formule'])
+     this.utilisateurService.resetpassword(data).subscribe({
+      next:(data)=>{
+        console.log("success");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "mot de passe réinitialisé avec success! ",
+          showConfirmButton: false,
+          timer: 5000
+        }).then(() => {
+          this.router.navigate(['/formule']);      });
+        
       },
-      error: (err: any)=>{
-        alert("ko");
+      error:(err:any)=>{
+        console.log("error "+err.error.errorMessage);
+        if (err.error.errorMessage==='NOT_MATCH_PASSWORD') {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "mot de passes non confromes.",
+            showConfirmButton: false,
+            timer: 5000
+          })
+          
+        }
+        if (err.error.errorMessage==='TOKEN_EXPIRED') {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Token expiré! ",
+            showConfirmButton: false,
+            timer: 5000
+          })
+          
+        }
+        if (err.error.errorMessage==='TOKEN_INVALID') {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Token invalide! ",
+            showConfirmButton: false,
+            timer: 5000
+          })
+        }   
       }
-    })
+     })
   }
 
 

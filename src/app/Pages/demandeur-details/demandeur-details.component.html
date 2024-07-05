@@ -40,11 +40,9 @@
       </div>
     </div>
     <div class="col">
-      <div class="card h-100">
+      <div class="card h-100"> {{demande.demandeurDTO?.scannernin}}
         <div class="card-body">
-            <img src="/assets/img/monument.jpeg" class="card-img-top" alt="...">
-            <!-- <img src={{demande.demandeurDTO?.scannernin}} class="card-img-top" alt="..."> -->
-            <img [src]="demande.demandeurDTO?.scannernin" class="card-img-top" alt="Scanner NIN">
+            <img src="demande.demandeurDTO?.scannernin" class="card-img-top" alt="Scanner NIN">
         </div>
         <div class="card-footer">
         </div>

@@ -18,8 +18,8 @@ export class DemandeurService implements OnInit{
 
   }
 
-  signup(data:any){
-    return this.httpClient.post(this.url + "/api/demandeur/demander" , data , {
+  signup(data:any):Observable<number>{
+    return this.httpClient.post<number>(this.url + "/api/demandeur/demander" , data , {
       headers:new HttpHeaders().set('Content-Type' , 'application/json')
     })
   }
@@ -37,6 +37,13 @@ export class DemandeurService implements OnInit{
 
   checkToken() {
     return this.httpClient.get(this.url + "/api/demandeur/checkToken");
+  }
+
+  uploadFile(file: File, id: number ){
+    const imageFormData = new FormData()
+    imageFormData.append('file', file)
+    const url = `${this.url + '/api/uploads'}/${id}`;
+    return this.httpClient.post(url,imageFormData);
   }
 
  getDemandeurById(id: number){

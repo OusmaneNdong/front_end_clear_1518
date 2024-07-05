@@ -2,12 +2,17 @@
     border-right: 1px solid #f2f2f2;
     padding-top: 11px;
 }
+.logo img{
+    margin-right: 30px;
+    margin-left: 60px;
+}
 .top-list {
     padding: 0;
     margin: 0;
     list-style: none;
     overflow: hidden;
-    float: right;
+    float: left;
+    margin-left: 40px;
 }
 .row{
     background-color: white;
@@ -21,7 +26,13 @@
 .top-list li{
     list-style: none;
     float: right;
-    padding: 10px 15px;
+    background-color: #ffc107;
+    border-radius: 8px 8px 8px 8px;
+    height: 30px;
+    width: 55px;
+}
+.top-list li:hover{
+    background-color: green;
 }
 .text-center{
     text-align: center;
@@ -43,7 +54,149 @@
         z-index: 999;
       
 }
-.left, .middle, .right {
+.avis {
+    background-color: green;
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    /* float: right; */
+    margin-left: 80px;
+}
+.avis:hover{
+    background-color: #ffc107;
+}
+.avis a:hover{
+    color: black;
+}
+.avis a {
+    color: white;
+    text-decoration: none;
+}
+.drapeau img{
+    margin-left: 80px;
+}
+.drapeau p{
+    margin-left: 60px;
+    margin-top: 5px;
+}
+.drapeau p span{
+    margin-left: 18px;
+    font-size: 13px;
+}
+.logo h3{
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin-top: 0px;
+    line-height: 35px;
+}
+svg{
+margin-left: 20px;
+}
+
+/*####################################*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  nav {
+    background-color: #f2f2f2;
+    /* color: white; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    color: black;
+    letter-spacing: 1px;
+
+  }
+  label{
+    margin-left: 10px;
+  }
+  
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+ ul li {
+    margin-right: 20px;
+  }
+  ul li:hover{
+    background-color: green;
+    color: white;
+
+  }
+  
+  ul li a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  ul li a:hover {
+    color: lightgreen;
+  }
+  
+  .checkbtn {
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+    display: none;
+  }
+  
+  #check {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .checkbtn {
+      display: block;
+      order: 1;
+      margin-right: 20px;
+    }
+  
+    ul {
+      position: fixed;
+      top: 80px;
+      right: -100%;
+      background-color: #f2f2f2;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s;
+    }
+  
+    ul li {
+      margin: 20px 0;
+    }
+  
+    ul li a {
+      font-size: 20px;
+    }
+  
+    #check:checked ~ ul {
+      right: 0;
+    }
+  }
+/* .left, .middle, .right {
     padding: 10px;
 }
 .left {
@@ -101,7 +254,6 @@
     display: inline-block;
     font-size: 16px;
     margin-bottom: 14px;
-    /* margin: 4px 2px; */
     cursor: pointer;
 }
 .avis:hover{
@@ -117,7 +269,6 @@
 .reseaux a {
     margin: 0 5px;
 }
-/* Media Queries */
 @media (max-width: 1920px) {
     .middle h3{
         font-size: 23px;
@@ -481,7 +632,7 @@
 }
 .box_2{
     display: flex;
-}
+} */
 
 
 
@@ -489,7 +640,7 @@
 /* #################### */
 
 
-*{
+/* *{
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -583,6 +734,7 @@
       left: -100%;
       text-align: center;
       transition: all .5s;
+      z-index: 999;
 
     }
     nav ul li{
@@ -602,38 +754,25 @@
       left: 0;
     }
     @media (max-width: 700px) {
-        nav{
-           margin-top: -8px;
-       }
+
 }
 
     @media (max-width: 621px) {
-             nav{
-                margin-top: 170px;
-            }
-    }
+
     @media (max-width: 430) {
-        nav{
-           margin-top: 300px;
-       }
+
        
     }
     @media (max-width: 400px) {
-        nav{
-           margin-top: 220px;
-       }
+
 }
     @media (max-width: 300px) {
-        nav{
-           margin-top: 220px;
-       }
+
 }
 
   }
   section{
-    /* background: url(bg1.jpg) no-repeat; */
-    /* background-color: #0082e6; */
     background-size: cover;
     height: calc(100vh - 80px);
   }
-  
+} */

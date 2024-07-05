@@ -32,14 +32,18 @@
              "node_modules/admin-lte/dist/css/Adminlte.css",
              "node_modules/font-awesome/css/font-awesome.css",
              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
-             "node_modules/ngx-spinner/animations/timer.css"
+             "node_modules/ngx-spinner/animations/timer.css",
+             "node_modules/bootstrap/dist/css/bootstrap.min.css"
 
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "/node_modules/admin-lte/dist/js/adminlte.js",
-              "node_modules/fastclick/lib/fastclick.js"
+              "node_modules/fastclick/lib/fastclick.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/jquery/dist/jquery.slim.min.js",
+             "node_modules/bootstrap/dist/js/bootstrap.min.js"
 
               
             ]

@@ -26,17 +26,6 @@ export class DashbordService{
     return this.httpClient.get<number>(this.url+"/api/dashbord/total-cours");
   }
 
-  
-  getByStatutApprouved(){
-    return this.httpClient.get(this.url+"/api/demandeur/getStatut/approuved");
-  }
-  getByStatutRejeted(){
-    return this.httpClient.get(this.url+"/api/demandeur/getStatut/Rejetée");
-  }
-  getByStatutCours(){
-    return this.httpClient.get(this.url+"/api/demandeur/getStatut/cours");
-  }
-
   getDemandeCount():Observable<Demande>{
     return this.httpClient.get<Demande>(this.url+"/api/dashbord/demande/total");
   }

@@ -1,0 +1,19 @@
+<div class="signup-form">
+    <div class="title">Mot de Passe Oublié</div> 
+  <form [formGroup]="forgotPasswordForm">
+      <div class="input-boxes">
+        <div class="input-box">
+          <i class="fas fa-envelope"></i>
+          <input type="text" formControlName="email" placeholder="Enter votre email" required>
+          <div *ngIf="forgotPasswordForm.controls.email.touched && forgotPasswordForm.controls.email.invalid">
+            <span *ngIf="forgotPasswordForm.controls.email.errors.required" style="font-size: 10px; color: red;">veuillez renseinger votre email !</span>
+            <span *ngIf="forgotPasswordForm.controls.email.errors.pattern" style="font-size: 10px; color: red;">email incorrect</span>
+            </div>
+        </div>
+        <div class="bouton">
+          <button class="btn btn-success" (click)="handlePassword()" [disabled]="(forgotPasswordForm.invalid)">envoie</button>
+          <button class="ghost btn-danger" id="signIn" >Retour</button>
+        </div>
+      </div>
+</form>
+</div>

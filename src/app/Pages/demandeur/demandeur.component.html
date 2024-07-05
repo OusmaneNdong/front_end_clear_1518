@@ -12,7 +12,7 @@
   <body>
     <div class="container-fluid">
         
-      <form [formGroup]="demandeurForm">
+      <form [formGroup]="demandeurForm" enctype="multipart/form-data">
         <div class="row">
 
           <div class="col-md-6 col-sm-12">
@@ -56,11 +56,11 @@
           <div class="col-md-6 col-sm-12">
             
             <label for="scannernin">Scanner CNI<span>*</span></label>
-            <input id="scannernin" type="file" name="scannernin" formControlName="scannernin" required/>
-            <div *ngIf="demandeurForm.controls.scannernin.touched && demandeurForm.controls.scannernin.invalid">
+            <input type="file" (change)="onImageUpload($event)" formControlName="scannernin" required/>
+            <!-- <div *ngIf="demandeurForm.controls.scannernin.touched && demandeurForm.controls.scannernin.invalid">
               <span *ngIf="demandeurForm.controls.scannernin.errors.required">veuillez renseinger ce champ !</span>
               <span *ngIf="demandeurForm.controls.scannernin.pattern">This field is invalid.</span>
-            </div>
+            </div> -->
           </div>
 
           <div class="col-md-6 col-sm-12">

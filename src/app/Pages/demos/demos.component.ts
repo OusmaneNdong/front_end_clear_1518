@@ -61,21 +61,12 @@ constructor(private dashbordService:DashbordService,private routes:Router){}
     })
   }
   getAllApprouved(){
-    this.dashbordService.getByStatutApprouved().subscribe((response:any)=>{
-      this.approuves = response;
-      
-    })
+    
   }
   getAllRejeted(){
-    this.dashbordService.getByStatutRejeted().subscribe((response:any)=>{
-      this.rejetes = response;
-      
-    })
+    
   }
   getAllCours(){
-    this.dashbordService.getByStatutCours().subscribe((response:any)=>{
-      this.cours = response;
-      
-    })
+    
   }
 }

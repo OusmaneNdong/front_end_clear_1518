@@ -49,6 +49,12 @@ import { DemosComponent } from './Pages/demos/demos.component';
 import { HeadComponent } from './Pages/head/head.component';
 import { ValidationComponent } from './Pages/validation/validation.component';
 import { TokenService } from './Services/token/token.service';
+import { TokenInterceptor } from './Services/token/token.interceptor';
+import { DowloadComponent } from './Pages/dowload/dowload.component';
+import { ViewFileComponent } from './Pages/view-file/view-file.component';
+import { NavlinkComponent } from './Pages/navlink/navlink.component';
+import { ResetComponent } from './Pages/reset/reset.component';
+import { UpdateDemandeurComponent } from './Pages/update-demandeur/update-demandeur.component';
 // import { MbscModule } from '@mobiscroll/angular';
 
 
@@ -84,6 +90,11 @@ import { TokenService } from './Services/token/token.service';
     DemosComponent,
     HeadComponent,
     ValidationComponent,
+    DowloadComponent,
+    ViewFileComponent,
+    NavlinkComponent,
+    ResetComponent,
+    UpdateDemandeurComponent,
 
   ],
   imports: [
@@ -118,7 +129,7 @@ import { TokenService } from './Services/token/token.service';
     
   ],
   providers: [
-    HttpClient,
+   HttpClient,
     {
       provide : HTTP_INTERCEPTORS,
       useClass : TokenService,
