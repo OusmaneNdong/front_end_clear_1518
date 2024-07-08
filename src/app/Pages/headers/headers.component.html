@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="nav-menu-nav.css">
+    
 </head> -->
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/plugins/nav-menu.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -25,8 +23,15 @@
     <link rel="stylesheet" href="/assets/base.css">
     <!-- theme core css -->
     <link href="/assets/styles.css" rel="stylesheet">
+    <link href="/assets/styles.scss" rel="stylesheet">
+
+
+
+
+
     <!-- custom css -->
     <link href="/assets/custom.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="/assets/nav-menu-nav.css"> -->
 
     <style>
         .dmopMx {
@@ -61,7 +66,7 @@
     </style><link id="botnation-chatbox-stylesheet" type="text/css" rel="stylesheet" href="https://cbassets.botnation.ai/css/botnation-chatbox.a67f5f5ab45ad19eb2103ff953f0c08d3ba69693.css"></head>
 <body>
     <div>
-        <header class="header-style1 menu_area-light fixedHeader">
+         <header class="header-style1 menu_area-light fixedHeader">
 
      
 
@@ -119,146 +124,292 @@
                                 <p class="text"><a href="http://www.fonctionpublique.gouv.sn" class="navbar-brand mfpnom">  Ministère de la Fonction Publique <br> Et de la Réforme du Service public </a></p>
                             </div>
                         </div>
+        
+                       
                         <div class="col-md-3">
+        
                             <div class="attr-nav align-items-lg-center ms-lg-auto vac">
                                 <ul>
-                                <li class="d-none d-xl-inline-block"><a href="#" class="butn secondary medium text-white shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal"> Votre avis compte </a></li>
+        
+                                    <!-- <li class="search"><a href="#"><i class="fas fa-search"></i></a></li> -->
+                                        
+                                    
+                                        <li class="d-none d-xl-inline-block"><a href="#" class="butn secondary medium text-white shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal"> Votre avis compte </a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
+        
                     </div>
                 </div>
-
+        
                 <div class="container-fluid px-sm-2-9 menucouleur">
                     <div class="row align-items-center">
                         <div class="col-12 col-lg-12">
                             <div class="menu_area alt-font">
-                                <nav class="navbar navbar-expand-lg navbar-light p-0">
-                                    <input type="checkbox" id="check">
-                                    <label for="check" class="checkbtn">
-                                        <i class="fas fa-bars"></i>
-                                    </label>
-                                    <label class="logo">DEMANDE D'ATTESTATION</label>
-                                    <ul>
-                                        <li><a class="active"  routerLink="/accueil">Accueil</a></li>
-                                        <li><a routerLink="/signup">Inscription</a></li>
-                                        <li>
-                                          <a routerLink="/formule">Connexion</a>
-                                        </li>
-                                        <li>
-                                          <a>Déconnexion</a>
-                                        </li>
-                                    </ul> 
 
-                                </nav>
-                                <!-- <nav class="navbar navbar-expand-lg navbar-light p-0">
+                                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                                    <div class="navbar-toggler"></div>
+                                    
+                                    <ul class="navbar-nav align-items-lg-center ms-auto menu" id="nav" style="">
+                                        
+                                        <li class="has-sub first"><span class="submenu-button"></span><a href="#"> Le ministère </a>
+                                            <ul class="row megamenu sub-menu">
+        
+                                                 
+                                                <li class="col-lg-3 has-sub"><span class="submenu-button"></span>
+                                                    <span class="mb-0 mb-lg-3 d-block py-2 p-lg-0 px-4 px-lg-0 text-uppercase sub-title font-weight-600 display-30"> Le cabinet </span>
+                                                    <ul class="sub-menu"> 
+                                                         
+                                                        <li>
+                                                            <a href="-Le-ministre-"><i class="fas fa-arrow-right me-2"></i> Le ministre </a>
+                                                        </li>
+                                                         
+                                                        <li>
+                                                            <a href="-Les-membres-du-cabinet-"><i class="fas fa-arrow-right me-2"></i> Les membres du cabinet </a>
+                                                        </li>
+                                                         
+                                                        <li>
+                                                            <a href="-Les-services-rattaches-au-cabinet-"><i class="fas fa-arrow-right me-2"></i> Les services rattachés au cabinet </a>
+                                                        </li>
+                                                        
+                                                        
+                                                    </ul>
+                                                </li>
+                                                 
+                                                <li class="col-lg-3 has-sub"><span class="submenu-button"></span>
+                                                    <span class="mb-0 mb-lg-3 d-block py-2 p-lg-0 px-4 px-lg-0 text-uppercase sub-title font-weight-600 display-30"> Le Secrétariat général </span>
+                                                    <ul class="sub-menu"> 
+                                                        
+                                                         
+                                                        <li><a href="Le-secretaire-general"><i class="fas fa-arrow-right me-2"></i> Le Secrétaire Général </a></li>
+                                                         
+                                                        <li><a href="La-cellule-de-passation-des-marches"><i class="fas fa-arrow-right me-2"></i> La Cellule de Passation des Marchés </a></li>
+                                                         
+                                                        <li><a href="LA-CELLULE-DES-AFFAIRES-JURIDIQUES-115"><i class="fas fa-arrow-right me-2"></i> La Cellule des Affaires juridiques </a></li>
+                                                         
+                                                        <li><a href="La-cellule-du-genre-et-de-l-equite"><i class="fas fa-arrow-right me-2"></i> La Cellule du Genre et de l’Equité </a></li>
+                                                         
+                                                        <li><a href="La-cellule-des-etudes-et-de-la-planification"><i class="fas fa-arrow-right me-2"></i> La Cellule des Etudes et de la Planification </a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                 
+                                                <li class="col-lg-3 has-sub"><span class="submenu-button"></span>
+                                                    <span class="mb-0 mb-lg-3 d-block py-2 p-lg-0 px-4 px-lg-0 text-uppercase sub-title font-weight-600 display-30"> Les directions </span>
+                                                    <ul class="sub-menu"> 
+                                                         
+                                                        <li>
+                                                            <a href="-La-Direction-Generale-de-la-Fonction-Publique-26-"><i class="fas fa-arrow-right me-2"></i> La Direction Générale de la Fonction Publique  </a>
+                                                        </li>
+                                                        
+                                                         
+                                                        <li><a href="La-Direction-de-la-Transformation-du-Service-Public"><i class="fas fa-arrow-right me-2"></i> La Direction de la Transformation du Secteur Public </a></li>
+                                                         
+                                                        <li><a href="Direction-des-Systemes-d-Information"><i class="fas fa-arrow-right me-2"></i> Direction des Systèmes d’Information </a></li>
+                                                         
+                                                        <li><a href="La-direction-de-l-administration-generale-et-de-l-equipement"><i class="fas fa-arrow-right me-2"></i> La Direction de l’Administration Générale et de l’Equipement </a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                 
+                                                <li class="col-lg-3 has-sub"><span class="submenu-button"></span>
+                                                    <span class="mb-0 mb-lg-3 d-block py-2 p-lg-0 px-4 px-lg-0 text-uppercase sub-title font-weight-600 display-30"> Autres administrations </span>
+                                                    <ul class="sub-menu"> 
+                                                        
+                                                         
+                                                        <li><a href="Le-Centre-Medico-Social-de-la-Fonction-publique"><i class="fas fa-arrow-right me-2"></i> Le Centre Médico–Social de la Fonction publique </a></li>
+                                                         
+                                                        <li><a href="Le-Centre-National-de-Formation-et-d-Action"><i class="fas fa-arrow-right me-2"></i> Le Centre National de Formation et d’Action </a></li>
+                                                         
+                                                        <li><a href="Programme-d-appui-a-la-modernisation-de-l-Administration-114"><i class="fas fa-arrow-right me-2"></i> Programme d’appui à la modernisation de l’Administration  </a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                        
+                                        
+                                        <li class="has-sub"><span class="submenu-button"></span><a href="#"> E-services </a>
+                                            <ul class="sub-menu">
+                                                
+                                                
+                                                <li> <a href="https://emploi-fpublique.sec.gouv.sn/login"><i class="fas fa-arrow-right me-2"></i> Souscrire à une demande d’emploi </a> </li>
+                                                
+                                                <li> <a href="https://fonctionpublique-actes.sec.gouv.sn/"><i class="fas fa-arrow-right me-2"></i> Télécharger votre acte administratif </a> </li>
+                                                
+                                                <li> <a href="#"><i class="fas fa-arrow-right me-2"></i> Suivre votre projet d’acte avec girafe </a> </li>
+                                                
+                                                <li> <a href="https://visite-fpublique.sec.gouv.sn/visite/new?objet=1"><i class="fas fa-arrow-right me-2"></i> Obtenir votre Attestation ... </a> </li>
+                                                
+                                            </ul>
+                                        </li> 
+                                        
+                                        <li class="has-sub"><span class="submenu-button"></span><a href="#"> Services aux usagers </a>
+                                            <ul class="sub-menu">
+                                                
+                                                
+                                                <li> <a href="Production-d-actes-administratifs"><i class="fas fa-arrow-right me-2"></i> Production d’actes administratifs </a> </li>
+                                                
+                                                <li> <a href="La-prise-en-charge-de-la-Sante-des-agents-de-l-Etat-et-de-leur-famille"><i class="fas fa-arrow-right me-2"></i> La prise en charge de la Santé des agents de l’Etat et de leur famille </a> </li>
+                                                
+                                                <li> <a href="Offre-delocalisee-des-services-de-la-Fonction-publique"><i class="fas fa-arrow-right me-2"></i> Offre délocalisée des services de la Fonction publique </a> </li>
+                                                
+                                                <li> <a href="Commission-consultative-sur-les-stages-de-formation-permanente"><i class="fas fa-arrow-right me-2"></i> Mise en position de stage de formation permanente </a> </li>
+                                                
+                                                <li> <a href="Commission-technique-de-Reconnaissance-de-Classement-et-d-Equivalence-des"><i class="fas fa-arrow-right me-2"></i> Reconnaissance, Classement et Équivalence des diplômes par la CRCE </a> </li>
+                                                
+                                            </ul>
+                                        </li> 
+                                        
+                                        
+                                        
+                                        <li class="has-sub"><span class="submenu-button"></span><a href="#"> Documentation </a>
+                                            <ul class="sub-menu">
+                                                
+                                                <li> <a href="-Bibliotheque-"><i class="fas fa-arrow-right me-2"></i> Bibliothèque </a> </li>
+                                                
+                                                <li> <a href="-Phototheque-"><i class="fas fa-arrow-right me-2"></i> Photothèque </a> </li>
+                                                
+                                                <li> <a href="-Quelles-reformes-pour-une-Fonction-publique-performante-"><i class="fas fa-arrow-right me-2"></i> Vidéothèque  </a> </li>
+                                                
+                                                
+                                            </ul>
+                                        </li> 
+                                        
+        
+                                        
+                                        <li>
+                                            <a href="-Actualites-"> Nos activités </a>
+                                        </li> 
+                                        
+                                        
+                                    </ul>
+                                    <!--end menu area
+                                    start attribute navigation -->
+                                    <div class="attr-nav align-items-lg-center ms-lg-auto">
+        
+                                        
+                                        
+                                    </div>
+                                   
+                                    <div class="social-icon">
+                                        <ul class="social-icons-style1">
+                                            <li class="d-inline-block me-2"><a href="https://www.facebook.com/fonctionpubliqueSn" target="_blank"><i class="ti-facebook"></i></a></li>
+                                            <li class="d-inline-block me-2"><a href="https://twitter.com/FpubliqueSn" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+                                            <li class="d-inline-block me-2"><a href="https://www.youtube.com/@fpubliquesn4927" target="_blank"><i class="ti-youtube"></i></a></li>
+                                            <li class="d-inline-block"><a href="https://www.linkedin.com/company/minist%C3%A8re-de-la-fonction-publique-et-de-la-transformation-du-secteur-public/" target="_blank"><i class="ti-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </nav> 
+                                 <!-- <nav class="nav">
                                     <input type="checkbox" id="check">
                                     <label for="check" class="checkbtn">
                                         <i class="fas fa-bars"></i>
                                     </label>
-                                    <label class="logo">DEMANDE D'ATTESTATION</label>
-                                    <ul>
-                                        <li><a class="active"  routerLink="/accueil">Accueil</a></li>
-                                        <li><a routerLink="/signup">Inscription</a></li>
-                                        <li>
-                                          <a routerLink="/formule">Connexion</a>
-                                        </li>
-                                        <li>
-                                          <a>Déconnexion</a>
-                                        </li>
+                                    <label class="logo">GFG</label>
+                                    <ul class="ul">
+                                        <li class="li"><a  class="a" href="#">HTML</a></li>
+                                        <li class="li"><a  class="a" href="#">Javascript</a></li>
+                                        <li class="li"><a  class="a" href="#">ReactJS</a></li>
+                                        <li class="li"><a  class="a" href="#">NodeJS</a></li>
                                     </ul>
                                 </nav> -->
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         
         </header>
 
+
+
+        <hr>
+
+
     </div>
     <script id="chatbox-jssdk" src="https://cbassets.botnation.ai/js/widget.js" async=""></script>
-    <script id="chatbox-jssdk" src="https://cbassets.botnation.ai/js/widget.js" async=""></script><script src="squelettes/js/jquery.min.js"></script>
+    <script id="chatbox-jssdk" src="https://cbassets.botnation.ai/js/widget.js" async=""></script>
+    <!-- <script src="/assets/squelettes/js/jquery.min.js"></script> -->
 
 <!-- popper js -->
-<script src="squelettes/js/popper.min.js"></script>
+<script src="/assets/assets/squelettes/js/popper.min.js"></script>
 
 <!-- bootstrap -->
-<script src="squelettes/js/bootstrap.min.js"></script>
+<script src="/assets/squelettes/js/bootstrap.min.js"></script>
 
 <!-- navigation -->
-<script src="squelettes/js/nav-menu.js"></script>
+<script src="/assets/squelettes/js/nav-menu.js"></script>
 
 <!-- serch -->
-<script src="squelettes/search/search.js"></script>
+<script src="/assets/squelettes/search/search.js"></script>
 
 <!-- owl carousel -->
-<script src="squelettes/js/owl.carousel.js"></script>
+<script src="/assets/squelettes/js/owl.carousel.js"></script>
 
 <!-- thumbs js -->
-<script src="squelettes/js/owl.carousel.thumbs.js"></script>
+<script src="/assets/squelettes/js/owl.carousel.thumbs.js"></script>
 
 <!-- tab -->
-<script src="squelettes/js/easy.responsive.tabs.js"></script>
+<script src="/assets/squelettes/js/easy.responsive.tabs.js"></script>
 
 <!-- jquery.counterup.min -->
-<script src="squelettes/js/jquery.counterup.min.js"></script>
+<script src="/assets/squelettes/js/jquery.counterup.min.js"></script>
 
 <!-- stellar js -->
-<script src="squelettes/js/jquery.stellar.min.js"></script>
+<script src="/assets/squelettes/js/jquery.stellar.min.js"></script>
 
 <!-- waypoints js -->
-<script src="squelettes/js/waypoints.min.js"></script>
+<script src="/assets/squelettes/js/waypoints.min.js"></script>
 
 <!-- countdown js -->
-<script src="squelettes/js/countdown.js"></script>
+<script src="/assets/squelettes/js/countdown.js"></script>
 
 <!-- jquery.magnific-popup js -->
-<script src="squelettes/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/squelettes/js/jquery.magnific-popup.min.js"></script>
 
 <!-- lightgallery js -->
-<script src="squelettes/js/lightgallery-all.js"></script>
+<script src="/assets/squelettes/js/lightgallery-all.js"></script>
 
 <!-- mousewheel js -->
-<script src="squelettes/js/jquery.mousewheel.min.js"></script>
+<script src="/assets/squelettes/js/jquery.mousewheel.min.js"></script>
 
 <!-- isotope.pkgd.min js -->
-<script src="squelettes/js/isotope.pkgd.min.js"></script>
+<script src="/assets/squelettes/js/isotope.pkgd.min.js"></script>
 
 <!-- animated headline js -->
-<script src="squelettes/js/animated-headline.js"></script>
+<script src="/assets/squelettes/js/animated-headline.js"></script>
 
 <!-- wow js -->
-<script src="squelettes/js/wow.js"></script>
+<script src="/assets/squelettes/js/wow.js"></script>
 
 <!-- lettering js -->
-<script src="squelettes/js/jquery.lettering.js"></script>
+<script src="/assets/squelettes/js/jquery.lettering.js"></script>
 
 <!-- textillate js -->
-<script src="squelettes/js/jquery.textillate.js"></script>
+<script src="/assets/squelettes/js/jquery.textillate.js"></script>
 
 <!-- tilt js -->
-<script src="squelettes/js/tilt.js"></script>
+<script src="/assets/squelettes/js/tilt.js"></script>
 
 <!--  clipboard js -->
-<script src="squelettes/js/clipboard.min.js"></script>
+<script src="/assets/squelettes/js/clipboard.min.js"></script>
 
 <!--  prism js -->
-<script src="squelettes/js/prism.js"></script>
+<script src="/assets/squelettes/js/prism.js"></script>
 
 <!-- custom scripts -->
-<script src="squelettes/js/main.js"></script>
+<script src="/assets/squelettes/js/main.js"></script>
 
 <!-- form plugins js -->
-<script src="squelettes/quform/js/plugins.js"></script>
+<script src="/assets/squelettes/quform/js/plugins.js"></script>
 
 <!-- form scripts js -->
-<script src="squelettes/quform/js/scripts.js"></script>
+<script src="/assets/squelettes/quform/js/scripts.js"></script>
 
 <!-- all js include end --> 
-
 <script type="text/javascript">
 	function launchChatbot(){
 		window.chatboxSettings = {
